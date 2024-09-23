@@ -3,11 +3,11 @@ T304 - Gestion intégrée des technologies
 Réveil Intelligent  
 
 Développeurs :
-* BRUGGER Alexandre
-* HUYBRECHTS Louis
-* NOPPE Hugo
-* NEUT Hugo
-* TROONBEECKX Hugo
-* VERBIEST Mateo
-* VERVAEREN Lucien
-* ZHENG Weili
+* BRUGGER Alexandre *(Aleex8)*
+* HUYBRECHTS Louis *(Nini1551)*
+* NOPPE Hugo *(NoppeHugo)*
+* NEUT Hugo *(hneut202216)*
+* TROONBEECKX Hugo *(hugotnbx)*
+* VERBIEST Mateo *(Correba)*
+* VERVAEREN Lucien *(Insanytil)*
+* ZHENG Weili *(0ropo)*

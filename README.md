@@ -2,7 +2,7 @@
 T304 - Gestion intégrée des technologies  
 Réveil Intelligent  
 
-Développeurs :
+Membres du groupe :
 * BRUGGER Alexandre *(Aleex8)*
 * HUYBRECHTS Louis *(Nini1551)*
 * NOPPE Hugo *(NoppeHugo)*

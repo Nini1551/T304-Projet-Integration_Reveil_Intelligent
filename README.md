@@ -30,6 +30,7 @@ Types de commits :
 
 **Mode d'emploi d'utilisation d'Ionic :**
 
+* Installer Ionic : ```npm install -g @ionic/cli```
 * Installer les dépendances du projet : ```npm install```
 * Créer un nouveau component : ```ionic generate component <componentName>```
 * Créer une nouvelle page : ```ionic generate page <pageName>```

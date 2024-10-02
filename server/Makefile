@@ -5,7 +5,7 @@ postgresdown:
 	docker compose down
 
 postgres:
-	docker exec -it postgres psql
+	docker exec -it postgres psql -U root -d alarm-clock
 
 createdb:
 	docker exec -it postgres createdb --username=root --owner=root alarm-clock

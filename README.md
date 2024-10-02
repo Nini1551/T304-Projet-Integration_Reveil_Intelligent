@@ -30,6 +30,7 @@ Types de commits :
 
 **Mode d'emploi d'utilisation d'Ionic :**
 
+* Installer NodeJS : [NodeJS](https://nodejs.org/fr/)
 * Installer Ionic : ```npm install -g @ionic/cli```
 * Installer les dépendances du projet : ```npm install```
 * Créer un nouveau component : ```ionic generate component <componentName>```
@@ -49,6 +50,7 @@ POSTGRES_PORT=5432
 POSTGRES_HOST=postgres
 ```
 
+* Installer go : [Go](https://go.dev/)
 * Installer les dépendances du projet : ```go mod tidy```
 * Installer go-migrate (CLI pour migration de DB) : ```go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest```
 * Créer un nouveau fichier de migration : ```migrate create -ext sql -dir db/migrations <fileName>```

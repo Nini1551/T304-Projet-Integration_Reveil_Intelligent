@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"log"
 	"os"
 
 	_ "github.com/lib/pq"
@@ -20,6 +21,7 @@ func NewDatabase() (*Database, error) {
 	dsn := "postgresql://" + user + ":" + password + "@" + host + ":" + port + "/" + dbname + "?sslmode=disable"
 
 	db, err := sql.Open("postgres", dsn)
+	log.Println("dsn", dsn)
 	if err != nil {
 		return nil, err
 	}

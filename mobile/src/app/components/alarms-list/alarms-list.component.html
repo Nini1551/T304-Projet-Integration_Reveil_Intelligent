@@ -1,4 +1,4 @@
-<ion-card *ngFor="let alarm of mockAlarms; index as i" [ngClass]="{'active-alarm': alarm.active, 'inactive-alarm': !alarm.active}">
+<ion-card *ngFor="let alarm of alarms; index as i" [ngClass]="{'active-alarm': alarm.active, 'inactive-alarm': !alarm.active}">
   <ion-card-header>
     <ion-card-title>{{ alarm?.name }}</ion-card-title>
     <ion-card-subtitle>{{ alarm?.hour }}h00</ion-card-subtitle>

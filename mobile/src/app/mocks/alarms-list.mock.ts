@@ -1,3 +1,5 @@
+// Valeurs moquées pour des alarmes à afficher au démarrage de l'application
+
 import { Alarm } from "../interfaces/alarms";
 
 export const ALARMS_LIST_MOCK: Alarm[] = [

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"server/db/model"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,6 +15,14 @@ import (
 
 type Database struct {
 	db *gorm.DB
+}
+
+func MigrateDatabase(db Database) error { // Migrer la base de données
+	err := db.db.AutoMigrate(&model.Alarm{}) // Création de la table des alarmes dans la base de données
+	if err != nil {                          // Vérification d'une erreur lors de la création de la table des alarmes
+		return err
+	}
+	return nil
 }
 
 func NewDatabase() (*Database, error) {
@@ -32,6 +41,13 @@ func NewDatabase() (*Database, error) {
 		fmt.Println("Could not initialize DB connection :", err)
 		return nil, err
 	}
+
+	err = MigrateDatabase(Database{db: db}) // Migrer la base de données
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println("Database migrated")
+
 	sqlDB, err := db.DB()
 	if err != nil { // Vérification d'une erreur lors de l'accès à la base de données
 		return nil, err

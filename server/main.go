@@ -14,11 +14,15 @@ func init() {
 	}
 }
 
-func main() {
+func connectDB() {
 	postgres, err := db.NewDatabase()
 	if err != nil {
 		log.Fatalf("Could not initialize DB connection: %s", err)
 	}
 	log.Println("DB connection initialized", postgres.GetDB())
 	defer postgres.Close()
+}
+
+func main() {
+	connectDB()
 }

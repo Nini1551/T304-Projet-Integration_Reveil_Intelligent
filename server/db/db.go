@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"server/db/mock"
 	"server/db/model"
 
 	"gorm.io/driver/postgres"
@@ -21,6 +22,17 @@ func MigrateDatabase(db Database) error { // Migrer la base de données
 	err := db.db.AutoMigrate(&model.Alarm{}) // Création de la table des alarmes dans la base de données
 	if err != nil {                          // Vérification d'une erreur lors de la création de la table des alarmes
 		return err
+	}
+	return nil
+}
+
+func InsertMockedAlarms(db Database) error { // Insérer des alarmes mockées dans la base de données
+	alarms := mock.ALARM_LIST      // Récupérer la liste d'alarmes mockées
+	for _, alarm := range alarms { // Pour chaque alarme de la liste d'alarmes
+		err := db.db.Create(&alarm).Error // Créer l'alarme dans la base de données
+		if err != nil {                   // Vérification d'une erreur lors de la création de l'alarme
+			return err
+		}
 	}
 	return nil
 }
@@ -42,11 +54,19 @@ func NewDatabase() (*Database, error) {
 		return nil, err
 	}
 
-	err = MigrateDatabase(Database{db: db}) // Migrer la base de données
+	database := &Database{db: db}
+
+	err = MigrateDatabase(*database) // Migrer la base de données
 	if err != nil {
 		return nil, err
 	}
 	fmt.Println("Database migrated")
+
+	err = InsertMockedAlarms(*database) // Insérer des alarmes mockées dans la base de données
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println("Mocked alarms inserted")
 
 	sqlDB, err := db.DB()
 	if err != nil { // Vérification d'une erreur lors de l'accès à la base de données

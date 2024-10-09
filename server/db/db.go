@@ -1,10 +1,11 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
+	"server/mocks"
+	"server/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,6 +15,25 @@ import (
 
 type Database struct {
 	db *gorm.DB
+}
+
+func MigrateDatabase(db Database) error { // Migrer la base de données
+	err := db.db.AutoMigrate(&models.Alarm{}) // Création de la table des alarmes dans la base de données
+	if err != nil {                           // Vérification d'une erreur lors de la création de la table des alarmes
+		return err
+	}
+	return nil
+}
+
+func InsertMockedAlarms(db Database) error { // Insérer des alarmes mockées dans la base de données
+	alarms := mocks.ALARM_LIST     // Récupérer la liste d'alarmes mockées
+	for _, alarm := range alarms { // Pour chaque alarme de la liste d'alarmes
+		err := db.db.Create(&alarm).Error // Créer l'alarme dans la base de données
+		if err != nil {                   // Vérification d'une erreur lors de la création de l'alarme
+			return err
+		}
+	}
+	return nil
 }
 
 func NewDatabase() (*Database, error) {
@@ -32,6 +52,21 @@ func NewDatabase() (*Database, error) {
 		fmt.Println("Could not initialize DB connection :", err)
 		return nil, err
 	}
+
+	database := &Database{db: db}
+
+	err = MigrateDatabase(*database) // Migrer la base de données
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println("Database migrated")
+
+	err = InsertMockedAlarms(*database) // Insérer des alarmes mockées dans la base de données
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println("Mocked alarms inserted")
+
 	sqlDB, err := db.DB()
 	if err != nil { // Vérification d'une erreur lors de l'accès à la base de données
 		return nil, err
@@ -51,10 +86,6 @@ func (d *Database) Close() error { // Fermer la connexion à la base de données
 	return sqlDB.Close()
 }
 
-func (d *Database) GetDB() *sql.DB { // Récupérer la base de données
-	sqlDB, err := d.db.DB()
-	if err != nil {
-		return nil
-	}
-	return sqlDB
+func (d *Database) GetDB() *gorm.DB { // Récupérer la base de données
+	return d.db
 }

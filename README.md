@@ -33,9 +33,9 @@ Types de commits :
 * Installer NodeJS : [NodeJS](https://nodejs.org/fr/)
 * Installer Ionic : ```npm install -g @ionic/cli```
 * Installer les dépendances du projet : ```npm install```
-* Créer un nouveau component : ```ionic generate component <componentName>```
+* Créer un nouveau component : ```ionic generate component components/<componentName>```
 * Créer une nouvelle page : ```ionic generate page <pageName>```
-* Créer un nouveau service : ```ionic generate service <serviceName>```
+* Créer un nouveau service : ```ionic generate service services/<serviceName>```
 * Démarrer l'application : ```ionic serve```
 
 **Mode d'emploi d'utilisation go :**

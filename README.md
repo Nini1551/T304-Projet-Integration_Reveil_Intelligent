@@ -48,6 +48,7 @@ POSTGRES_PASSWORD=password
 POSTGRES_DB=alarm-clock
 POSTGRES_PORT=5432
 POSTGRES_HOST=postgres
+PROFILE=dev
 ```
 
 * Installer go : [Go](https://go.dev/)

@@ -41,7 +41,7 @@ func main() {
 	defer db.Close()
 
 	r := gin.Default()
-	if os.Getenv("profile") != "prod" {
+	if os.Getenv("PROFILE") != "prod" {
 		r.Use(cors.New(cors.Config{
 			AllowOrigins:     []string{"http://localhost:8080", "http://localhost:8100"},
 			AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},
@@ -49,7 +49,7 @@ func main() {
 			AllowCredentials: true,
 		}))
 		log.Println("Starting in dev mode")
-	} else if os.Getenv("profile") == "prod" {
+	} else if os.Getenv("PROFILE") == "prod" {
 		gin.SetMode(gin.ReleaseMode)
 		r.Use(cors.New(cors.Config{
 			AllowOrigins:     []string{"http://localhost:8080", "http://localhost:8100"},

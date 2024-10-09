@@ -1,7 +1,7 @@
 package mocks
 
 import (
-	"server/db/models"
+	"server/models"
 	"time"
 )
 

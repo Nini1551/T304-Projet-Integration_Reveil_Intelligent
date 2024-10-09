@@ -1,12 +1,11 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
-	"server/db/mocks"
-	"server/db/models"
+	"server/mocks"
+	"server/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -87,10 +86,6 @@ func (d *Database) Close() error { // Fermer la connexion à la base de données
 	return sqlDB.Close()
 }
 
-func (d *Database) GetDB() *sql.DB { // Récupérer la base de données
-	sqlDB, err := d.db.DB()
-	if err != nil {
-		return nil
-	}
-	return sqlDB
+func (d *Database) GetDB() *gorm.DB { // Récupérer la base de données
+	return d.db
 }

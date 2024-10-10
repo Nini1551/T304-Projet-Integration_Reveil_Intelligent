@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Alarm } from '../../interfaces/alarms';
+import { Alarm, AlarmData } from '../../interfaces/alarms';
 import { AlarmService } from 'src/app/services/alarm.service';
+import { alarm } from 'src/app/classes/alarms';
 
 @Component({
   selector: 'app-alarms-list',
@@ -18,16 +19,8 @@ export class AlarmsListComponent implements OnInit {
     this.alarmService.getAlarms().subscribe((data: any) => {
       console.log(data);
       for (let alarmData of data) {
-        let alarm: Alarm = {
-          id: alarmData.ID,
-          name: alarmData.Name,
-          ringDate: alarmData.RingDate,
-          createdAt: alarmData.CreatedAt,
-          location: alarmData.Location,
-          ringtone: alarmData.Ringtone,
-          active: alarmData.IsActive
-        }
-        this.alarms.push(alarm);
+        let newAlarm: Alarm = new alarm(alarmData);
+        this.alarms.push(newAlarm);
       }
       console.log(this.alarms);
     });

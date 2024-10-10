@@ -43,7 +43,7 @@ func main() {
 	r := gin.Default()
 	if os.Getenv("PROFILE") != "prod" {
 		r.Use(cors.New(cors.Config{
-			AllowOrigins:     []string{"http://localhost:8080", "http://localhost:8100"},
+			AllowOrigins:     []string{"http://localhost:8100"},
 			AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},
 			AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "Accept", "Cache-Control", "X-Requested-With", "Set-Cookie"},
 			AllowCredentials: true,
@@ -52,7 +52,7 @@ func main() {
 	} else if os.Getenv("PROFILE") == "prod" {
 		gin.SetMode(gin.ReleaseMode)
 		r.Use(cors.New(cors.Config{
-			AllowOrigins:     []string{"http://localhost:8080", "http://localhost:8100"},
+			AllowOrigins:     []string{"http://localhost:8100"},
 			AllowMethods:     []string{"GET", "POST", "DELETE"},
 			AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "Accept", "Cache-Control", "X-Requested-With", "Set-Cookie"},
 			AllowCredentials: true,

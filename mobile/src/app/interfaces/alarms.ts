@@ -1,8 +1,8 @@
 export interface Alarm{
     id: number;
     name: string;
-    ringDate: string;
-    createdAt: string;
+    ringDate: Date;
+    createdAt: Date;
     location: string;
     ringtone: string;
     active: boolean;
